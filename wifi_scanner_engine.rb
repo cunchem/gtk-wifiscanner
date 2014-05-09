@@ -143,46 +143,23 @@ scrolled_window.set_policy( Gtk::POLICY_AUTOMATIC, Gtk::POLICY_ALWAYS )
 view = Gtk::TreeView.new(treestore)
 view.selection.mode = Gtk::SELECTION_NONE
 
+def new_treeview_column(name, column_id)
+  renderer = Gtk::CellRendererText.new
+  col = Gtk::TreeViewColumn.new(name, renderer, :text => column_id)
+  return col
+end
+
 # Create a renderer
-renderer = Gtk::CellRendererText.new
-# Add column using our renderer
-col = Gtk::TreeViewColumn.new("Identifiant", renderer, :text => 0)
-view.append_column(col)
-
-# Create another renderer and set the weight property
-renderer = Gtk::CellRendererText.new
-renderer.weight = Pango::FontDescription::WEIGHT_BOLD
-# Add column using the second renderer
-col = Gtk::TreeViewColumn.new("Constructeur", renderer, :text => 1)
-view.append_column(col)
-
-# Create one more renderer and set the foreground color to red
-renderer = Gtk::CellRendererText.new
-#renderer.foreground = "red"
-# Add column using the third renderer
-col = Gtk::TreeViewColumn.new("Force du signal", renderer,:text => 2)
-col.set_sort_column_id(2)
-view.append_column(col)
-
-
-# - add another (virtual) VIEW column to TreeView
-# Create one last renderer and set its display value to row's path
-renderer = Gtk::CellRendererText.new
-# Add column using the third renderer
-col = Gtk::TreeViewColumn.new("Nb. réseaux", renderer,:text => 3)
-view.append_column(col)
-
-# - add another (virtual) VIEW column to TreeView
-# Create one last renderer and set its display value to row's path
-renderer = Gtk::CellRendererText.new
-# Add column using the third renderer
-col = Gtk::TreeViewColumn.new("Réseaux", renderer,:text => 4)
-view.append_column(col)
+view.append_column(new_treeview_column("Identifiant", 0))
+view.append_column(new_treeview_column("Constructeur", 1))
+view.append_column(new_treeview_column("Force du signal", 2))
+view.append_column(new_treeview_column("Nb. réseaux", 3))
+view.append_column(new_treeview_column("Réseaux", 4))
 
 
 
-vbox = Gtk::VBox.new(homogeneous=false, spacing=nil) 
-hbox = Gtk::HBox.new(homogeneous=false, spacing=nil) 
+vbox = Gtk::VBox.new(homogeneous=false, spacing=nil)
+hbox = Gtk::HBox.new(homogeneous=false, spacing=nil)
 hbox.set_spacing(15)
 
 title = Gtk::Label.new
