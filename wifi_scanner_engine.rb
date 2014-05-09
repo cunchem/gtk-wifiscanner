@@ -144,8 +144,12 @@ view = Gtk::TreeView.new(treestore)
 view.selection.mode = Gtk::SELECTION_NONE
 
 def new_treeview_column(name, column_id)
-  renderer = Gtk::CellRendererText.new
-  col = Gtk::TreeViewColumn.new(name, renderer, :text => column_id)
+  renderer = Gtk::CellRendererText.new()
+  col = Gtk::TreeViewColumn.new(name,
+                                renderer,
+                                :text => column_id)
+  col.clickable = true
+  col.sort_column_id = column_id
   return col
 end
 
