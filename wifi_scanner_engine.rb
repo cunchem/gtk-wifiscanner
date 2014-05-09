@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 require 'gtk2'
-require 'device'
+require './device'
 require 'time'
 require "stringio"
 require 'timeout'
