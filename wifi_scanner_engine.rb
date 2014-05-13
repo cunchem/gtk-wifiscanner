@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
-require 'gtk2'
+require 'gtk3'
 require 'device'
 require 'time'
 require "stringio"
