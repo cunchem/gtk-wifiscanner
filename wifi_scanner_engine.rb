@@ -11,6 +11,8 @@ require 'timeout'
 GRAPHIC_DIR="Graphic"
 LOGO_INRIA= GRAPHIC_DIR +  "/logo-inria.jpg"
 LOGO_PRIVATICS= GRAPHIC_DIR + "/logo-privatics.png"
+LOGO_INSA= GRAPHIC_DIR +  "/Logo_INSA_Lyon_2014.png"
+LOGO_CITI= GRAPHIC_DIR +  "/Citi_small.png"
 LOGO_SCANNER= GRAPHIC_DIR + "/logo-scanner.png"
 
 
@@ -20,7 +22,16 @@ DEVICES = Hash.new()
 PERIOD = 1
 def format_ss(ss)
  # return "#{100+ ss.to_i}%  (#{ss} dB)"
+  x =  (100+ss.to_i)
+  puts x
+  x = x.to_s
+  puts x
+  x = x.to_s.rjust(2, "0")
+  puts x
+  return "#{x}%"
+
   return "#{100+ ss.to_i}%"
+
 end 
 def insert_ssid(dev,ssid)
   if(ssid == "") then 
@@ -118,8 +129,8 @@ def clean_device_list()
   
 end
 def update_summary_info()
-  text = "<big> \n  Nombre d'appareils visibles: #{DEVICES.size} </big>"
-  text =  "<big> \n  Number of visible devices: #{DEVICES.size} </big>"
+  text = "<big> \n  Nombre d'appareils: #{DEVICES.size} </big>"
+  #text =  "<big> \n  Number of visible devices: #{DEVICES.size} </big>"
   SUMMARY_INFO.set_markup(text)
 end
 def update_device_list(line)
@@ -171,11 +182,20 @@ title.set_markup(" ")
 vbox.pack_start(title, expand = false, padding = 10)
 
 # Add the logo to the header
+
+
+#logo_insa = Gtk::Image.new(LOGO_INSA)
+#hbox.pack_start(logo_insa, expand = true, padding = 10)
+
+#logo_citi = Gtk::Image.new(LOGO_CITI)
+#hbox.pack_start(logo_citi, expand = true, padding = 10)
+
 logo_inria = Gtk::Image.new(LOGO_INRIA)
 hbox.pack_start(logo_inria, expand = true, padding = 10)
 
 image_wifi = Gtk::Image.new(LOGO_SCANNER)
 hbox.pack_start(image_wifi, expand = true, padding = 10)
+
 
 logo_privatics = Gtk::Image.new(LOGO_PRIVATICS)
 hbox.pack_start(logo_privatics, expand = true, padding = 10)

@@ -10,7 +10,7 @@ class Device
     @time = time
     @ss =   ss
     @ssids = [ssid]
-    @vendor = lookup_vendor(@mac)
+    @vendor = lookup_vendor(@mac)[0..20]
   end
   def anonymizeMac(mac)
     array = mac.split(':')
