@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
-require 'gtk2'
-require 'device'
+require 'gtk3'
+require './device'
 require 'time'
 require "stringio"
 require 'timeout'
@@ -47,7 +47,7 @@ def insert_ssid(dev,ssid)
     begin
       #puts "#{iter}"
     end while iter.next! && iter[0]!=dev.mac
-    iter[3] = dev.nbssids.to_s
+    iter[3] = dev.nbssids
     iter[2] = format_ss(dev.ss) #dev.ss 
     child = TREESTORE.append(iter)
     child[4] = ssid
@@ -68,7 +68,7 @@ def update_treestore(dev,ssid)
     parent[0] = dev.mac
     parent[1] = dev.vendor
     parent[2] = format_ss(dev.ss) #dev.ss
-    parent[3] = dev.nbssids.to_s
+    parent[3] = dev.nbssids
     
     dev.ssids.each do |ssid|
       insert_ssid(dev,ssid)
@@ -143,7 +143,7 @@ end
 
 
 
-TREESTORE = Gtk::TreeStore.new(String, String, String,String,String, String)
+TREESTORE = Gtk::TreeStore.new(String, String, String,Integer,String, String)
 treestore = TREESTORE
 
 scrolled_window = Gtk::ScrolledWindow.new( nil, nil )
@@ -165,11 +165,11 @@ def new_treeview_column(name, column_id)
 end
 
 # Create a renderer
-view.append_column(new_treeview_column("Identifiant", 0))
-view.append_column(new_treeview_column("Constructeur", 1))
-view.append_column(new_treeview_column("Force du signal", 2))
-view.append_column(new_treeview_column("Nb. réseaux", 3))
-view.append_column(new_treeview_column("Réseaux", 4))
+view.append_column(new_treeview_column("Identifier", 0))
+view.append_column(new_treeview_column("Vendor", 1))
+view.append_column(new_treeview_column("Signal", 2))
+view.append_column(new_treeview_column("Nb. networks", 3))
+view.append_column(new_treeview_column("Networks", 4))
 
 
 
