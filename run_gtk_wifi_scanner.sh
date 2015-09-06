@@ -1,5 +1,8 @@
 #! /bin/sh
 
+# Copyright (C) 2015  Mathieu Cunche <mathieu.cunche@insa-lyon.fr>
+
+
 wlan_interface="wlan0"  # may need to be changed on some configuration
 
 

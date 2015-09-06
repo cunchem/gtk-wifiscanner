@@ -1,4 +1,4 @@
-# Copyright (C) 2015  Mathieu Cunche <mathieu.cunche@innsa-lyon.fr>
+# Copyright (C) 2015  Mathieu Cunche <mathieu.cunche@insa-lyon.fr>
 
 LOCAL_OUI_FILE_PATH = "./oui.txt"
 VENDOR_STR_LENGTH=30
