@@ -132,6 +132,8 @@ def update_summary_info()
   text = "<big> \n  Nombre d'appareils: #{DEVICES.size} </big>"
   #text =  "<big> \n  Number of visible devices: #{DEVICES.size} </big>"
   SUMMARY_INFO.set_markup(text)
+  
+
 end
 def update_device_list(line)
   time, sa, da, ss, ssid = parse_line(line)
