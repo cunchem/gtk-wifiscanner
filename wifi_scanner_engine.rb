@@ -14,7 +14,7 @@ require 'timeout'
 GRAPHIC_DIR="Graphic"
 LOGO_INRIA= GRAPHIC_DIR +  "/logo-inria.jpg"
 LOGO_PRIVATICS= GRAPHIC_DIR + "/logo-privatics.png"
-LOGO_INSA= GRAPHIC_DIR +  "/Logo_INSA_Lyon_2014.png"
+LOGO_INSA= GRAPHIC_DIR +  "/Logo_INSA_Lyon_2014_small.png"
 LOGO_CITI= GRAPHIC_DIR +  "/Citi_small.png"
 LOGO_SCANNER= GRAPHIC_DIR + "/logo-scanner.png"
 
@@ -180,7 +180,7 @@ view.append_column(new_treeview_column("Networks", 4))
 
 vbox = Gtk::VBox.new(homogeneous=false, spacing=nil)
 hbox = Gtk::HBox.new(homogeneous=false, spacing=nil)
-hbox.set_spacing(15)
+hbox.set_spacing(25)
 
 title = Gtk::Label.new
 title.set_markup(" ")
@@ -194,16 +194,24 @@ vbox.pack_start(title, expand = false, padding = 10)
 
 #logo_citi = Gtk::Image.new(LOGO_CITI)
 #hbox.pack_start(logo_citi, expand = true, padding = 10)
+#vbox.pack_start( expand = false, padding = 10)
+logo_insa = Gtk::Image.new(LOGO_INSA)
+hbox.pack_start(logo_insa, expand = true, padding = 10)
 
-logo_inria = Gtk::Image.new(LOGO_INRIA)
-hbox.pack_start(logo_inria, expand = true, padding = 10)
+logo_citi = Gtk::Image.new(LOGO_CITI)
+hbox.pack_start(logo_citi, expand = true, padding = 10)
 
 image_wifi = Gtk::Image.new(LOGO_SCANNER)
 hbox.pack_start(image_wifi, expand = true, padding = 10)
 
 
+logo_inria = Gtk::Image.new(LOGO_INRIA)
+hbox.pack_start(logo_inria, expand = true, padding = 10)
+
+
 logo_privatics = Gtk::Image.new(LOGO_PRIVATICS)
 hbox.pack_start(logo_privatics, expand = true, padding = 10)
+
 
 vbox.pack_start(hbox, expand = false, padding = 10)
 
