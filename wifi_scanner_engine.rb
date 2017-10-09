@@ -104,7 +104,9 @@ def parse_line(line)
   return  time, sa, da, ss, ssid
 end
 def update_device(sa,time,da,ss,ssid)
-  
+  if (sa.length < 17) then 
+    return
+  end
   dev = DEVICES[sa]
   puts dev
   if(dev==nil ) then
@@ -153,11 +155,12 @@ treestore = TREESTORE
 
 scrolled_window = Gtk::ScrolledWindow.new( nil, nil )
 scrolled_window.border_width=( 10 )
-scrolled_window.set_policy( Gtk::POLICY_AUTOMATIC, Gtk::POLICY_ALWAYS )
+scrolled_window.set_policy(Gtk::PolicyType::AUTOMATIC, Gtk::PolicyType::ALWAYS )
 
 
 view = Gtk::TreeView.new(treestore)
-view.selection.mode = Gtk::SELECTION_NONE
+view.selection.mode = Gtk::SelectionMode::NONE 
+
 
 def new_treeview_column(name, column_id)
   renderer = Gtk::CellRendererText.new()
@@ -178,13 +181,19 @@ view.append_column(new_treeview_column("Networks", 4))
 
 
 
-vbox = Gtk::VBox.new(homogeneous=false, spacing=nil)
-hbox = Gtk::HBox.new(homogeneous=false, spacing=nil)
+#vbox = Gtk::VBox.new(homogeneous=false, spacing=nil)
+vbox = Gtk::Box.new(:vertical, spacing=nil)
+
+#hbox = Gtk::HBox.new(homogeneous=false, spacing=nil)
+hbox = Gtk::Box.new(:horizontal,  spacing=nil)
+
 hbox.set_spacing(25)
 
 title = Gtk::Label.new
 title.set_markup(" ")
-vbox.pack_start(title, expand = false, padding = 10)
+#vbox.pack_start(title, expand = false, padding = 10)
+hbox.pack_start(title, :expand => true, :fill => true, :padding => 10)
+ #pack_start(title, expand = false, padding = 10)
 
 # Add the logo to the header
 
@@ -195,23 +204,33 @@ vbox.pack_start(title, expand = false, padding = 10)
 #logo_citi = Gtk::Image.new(LOGO_CITI)
 #hbox.pack_start(logo_citi, expand = true, padding = 10)
 #vbox.pack_start( expand = false, padding = 10)
-logo_insa = Gtk::Image.new(LOGO_INSA)
-hbox.pack_start(logo_insa, expand = true, padding = 10)
 
-logo_citi = Gtk::Image.new(LOGO_CITI)
-hbox.pack_start(logo_citi, expand = true, padding = 10)
-
-image_wifi = Gtk::Image.new(LOGO_SCANNER)
-hbox.pack_start(image_wifi, expand = true, padding = 10)
+#logo_insa = Gtk::Image.new(LOGO_INSA)
+logo_insa = Gtk::Image.new(:file=>LOGO_INSA, :stock => nil, :size => nil)
+#hbox.pack_start(logo_insa, expand = true, padding = 10)
+hbox.pack_start(logo_insa, :expand => true, :fill => true, :padding => 10)
 
 
-logo_inria = Gtk::Image.new(LOGO_INRIA)
-hbox.pack_start(logo_inria, expand = true, padding = 10)
+#logo_citi = Gtk::Image.new(LOGO_CITI)
+logo_citi = Gtk::Image.new(:file=>LOGO_CITI, :stock => nil, :size => nil)
+hbox.pack_start(logo_citi, :expand => true, :fill => true, :padding => 10)
 
+#box.pack_start(logo_citi, expand = true, padding = 10)
 
-logo_privatics = Gtk::Image.new(LOGO_PRIVATICS)
-hbox.pack_start(logo_privatics, expand = true, padding = 10)
+#image_wifi = Gtk::Image.new(LOGO_SCANNER)
+#hbox.pack_start(image_wifi, expand = true, padding = 10)
+image_wifi = Gtk::Image.new(:file=>LOGO_SCANNER, :stock => nil, :size => nil)
+hbox.pack_start(image_wifi, :expand => true, :fill => true, :padding => 10)
 
+#logo_inria = Gtk::Image.new(LOGO_INRIA)
+#hbox.pack_start(logo_inria, expand = true, padding = 10)
+logo_inria = Gtk::Image.new(:file=>LOGO_INRIA, :stock => nil, :size => nil)
+hbox.pack_start(logo_inria, :expand => true, :fill => true, :padding => 10)
+
+#logo_privatics = Gtk::Image.new(LOGO_PRIVATICS)
+#hbox.pack_start(logo_privatics, expand = true, padding = 10)
+logo_privatics = Gtk::Image.new(:file=>LOGO_PRIVATICS, :stock => nil, :size => nil)
+hbox.pack_start(logo_privatics, :expand => true, :fill => true, :padding => 10)
 
 vbox.pack_start(hbox, expand = false, padding = 10)
 
