@@ -3,7 +3,7 @@
 # Copyright (C) 2015  Mathieu Cunche <mathieu.cunche@insa-lyon.fr>
 
 
-wlan_interface="wlan17"  # may need to be changed on some configuration
+wlan_interface="wlan18"  # may need to be changed on some configuration
 
 
 #if iwconfig mon0 2>&1 | grep -q "No such device"
